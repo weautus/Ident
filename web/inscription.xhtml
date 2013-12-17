@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <h:outputStylesheet name="css/design.css" />  
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+        <div id="wrap">
+
+          <div id="header">
+                <h1><h:form><h:commandLink action="#{usersCtrl.goIndex()}" value="Mon Site"/></h:form></h1>
+                <h2>Site de ...</h2>
+            </div>
+
+            <div id="menu">
+                <ul>
+                    <li><h:form><h:commandLink action="#{usersCtrl.goIndex()}" value="Accueil"/></h:form></li>
+                    <li><a href="#">Mon profil</a></li>
+                    <li><a href="#">Accueil</a></li>
+                    <li><a href="#">Accueil</a></li>
+                    <li><a href="#">Accueil</a></li>
+                    <li><a href="#">Accueil</a></li>
+                </ul>
+            </div>
+
+            <div class="content">
+
+                <div class="left">
+                    <h:form>  
+
+                        <h:panelGrid columns="1">  
+
+                            <!-- Login -->
+                            <h:outputLabel value="Login:"/>  
+                            <h:inputText id="login" value="#{usersCtrl.userACreer.login}" 
+                                         required="true" requiredMessage="Login nécessaire" validatorMessage="Veuillez insérer que des lettres ou des chiffres" >
+                                <f:validateLength minimum="4" maximum="20" />
+                                <f:validateRegex 
+                                    pattern= "^[0-9a-zA-Z ]+$" />
+                            </h:inputText>
+                            <h:message for="login" style="color:red"/>
+
+
+
+                            <!-- MDP -->
+                            <h:outputLabel value="Mot de passe:"/>  
+                            <h:inputSecret id="mdp" value="#{usersCtrl.userACreer.mdp}" 
+                                           required="true" requiredMessage="Mot de passe nécessaire" validatorMessage="Veuillez insérer que des lettres ou des chiffres" >
+                                <f:validateLength minimum="4" maximum="20" />
+                                <f:validateRegex 
+                                    pattern= "^[0-9a-zA-Z ]+$" />
+                            </h:inputSecret>
+                            <h:message for="mdp" style="color:red"/>
+
+
+                            <!-- EMAIL -->
+                            <h:outputLabel value="Email:"/>  
+                            <h:inputText id="email" value="#{usersCtrl.userACreer.email}" 
+                                         required="true" requiredMessage="Email nécessaire" validatorMessage="Email non valide">
+                                <f:validateLength minimum="2" maximum="30" />
+                                <f:validateRegex
+                                    pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+
+                            </h:inputText>
+                            <h:message for="email" style="color:red"/>   
+
+                            <h:commandButton action="#{usersCtrl.goInscriptionFin()}" value="Enregistrer"/>
+
+                            <h:outputText value="#{usersCtrl.erreur}" style="color:red"/>
+                        </h:panelGrid>  
+
+                    </h:form>  
+                </div>  
+            </div>
+
+            <div class="right"> 
+
+            </div>
+        </div>
+
+
+
+
+    </h:body>
+</html>
+

@@ -1,0 +1,92 @@
+-- TABLE
+
+Create table Users(
+idUser int primary key,
+login varchar(50),
+mdp varchar(50),
+email varchar(100)
+);
+
+Create table Message(
+idMessage int primary key,
+destinataire int not null,
+expediteur int not null,
+titre varchar(255),
+contenu varchar(8000),
+lu boolean,
+dateEnvoi date
+);
+
+create table SEQUENCE (
+	SEQ_NAME varchar(20) not null,
+	SEQ_COUNT numeric(6) not null,
+	constraint IDNUMEROAUTO primary key (SEQ_NAME)
+	);
+
+alter table Message
+add constraint fk_exp foreign key (expediteur) references Users(iduser);
+
+alter table Message
+add constraint fk_dest foreign key (destinataire) references Users(iduser);
+
+
+Create table Commentaire (
+idComm int primary key,
+idUser int not null,
+idRecette int not null,
+commentaire varchar(8000)
+);
+
+Create table Note(
+idNote int primary key,
+idRecette int not null,
+idUser int not null,
+note int
+);
+
+Create table Ingredient(
+idIng int primary key,
+libelle varchar(50) not null,
+quantite int,
+mesure varchar(50),
+idRecette int not null
+);
+
+Create table Recette(
+idRecette int primary key,
+nom varchar(50),
+nbPersonne int,
+tpsPrepa time,
+cuisson time,
+cout double,
+difficulte varchar(50),
+instruction varchar(8000),
+sections varchar(50),
+feu boolean
+);
+
+
+Alter table Commentaire
+add constraint fk_Com_idRecette foreign key (idRecette) references Recette(idRecette);
+
+Alter table Commentaire
+add constraint fk_Com_idUser foreign key (idUser) references Users(idUser);
+
+Alter table Note
+add constraint fk_Note_idRecette foreign key (idRecette) references Recette(idRecette);
+
+Alter table Note
+add constraint fk_Note_idUser foreign key (idUser) references Users(idUser);
+
+Alter table Ingredient
+add constraint fk_Ing_idRecette foreign key (idRecette) references Recette(idRecette);
+
+-- VALUES
+
+Insert into users values (1,'Weautus','aaaa');
+
+INSERT INTO SEQUENCE ( SEQ_NAME, SEQ_COUNT ) VALUES ( 'Commentaire', 0 );
+INSERT INTO SEQUENCE ( SEQ_NAME, SEQ_COUNT ) VALUES ( 'Ingredient', 0 );
+INSERT INTO SEQUENCE ( SEQ_NAME, SEQ_COUNT ) VALUES ( 'Users', 0 );
+INSERT INTO SEQUENCE ( SEQ_NAME, SEQ_COUNT ) VALUES ( 'Recette', 0 );
+INSERT INTO SEQUENCE ( SEQ_NAME, SEQ_COUNT ) VALUES ( 'Note', 0 );

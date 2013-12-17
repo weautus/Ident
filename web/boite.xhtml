@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <h:outputStylesheet name="css/design.css" />  
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+        <div id="wrap">
+
+            <div id="header">
+                <h1><h:form><h:commandLink action="#{usersCtrl.goIndex()}" value="Mon Site"/></h:form></h1>
+                <h2>Site de ...</h2>
+            </div>
+
+            <div id="menu">
+                <ul>
+                    <li><h:form><h:commandLink action="#{usersCtrl.goIndex()}" value="Accueil"/></h:form></li>
+                    <li><h:form><h:commandLink action="#{usersCtrl.goBoite()}" value="Boite de réception" rendered="#{usersCtrl.userConnecte.login != null}"/></h:form></li>
+                    <li><a href="#">Accueil</a></li>
+                    <li><a href="#">Accueil</a></li>
+                    <li><a href="#">Accueil</a></li>
+                    <li><a href="#">Accueil</a></li>
+                </ul>
+            </div>
+
+            <div class="content">
+
+                <div class="left">
+
+                        <h:form>  
+                            <h:commandButton action="#{usersCtrl.goEcrireMessage()}" value="Nouveau message"/> <br/><br/>
+                            
+                            <p:dataTable id="dataTable" var="mes" value="#{usersCtrl.allMessagesRecu}" 
+                                         emptyMessage="Pas de messages reçus">  
+                                <f:facet name="header">  
+                                    Boite de reception  
+                                </f:facet>  
+
+                                <p:column sortBy="expediteur" headerText="Expéditeur" width="75" >  
+                                    <h:outputText value="#{mes.expediteur.login}" />  
+                                </p:column>  
+
+                                <p:column sortBy="titre" headerText="Titre" width="400">  
+                                    <h:commandLink action="#{usersCtrl.goLireMessage(mes)}" value="#{mes.titre}"/>  
+                                </p:column>  
+
+                                <p:column sortBy="dateenvoi" headerText="Date">  
+                                    <h:outputText value="#{mes.dateenvoi}" >
+                                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+                                    </h:outputText>  
+                                </p:column>  
+
+                            </p:dataTable>      
+                        </h:form>  
+                        <br/><br/>
+                        <h:form>  
+                            <p:dataTable id="dataTable2" var="mes" value="#{usersCtrl.allMessagesEnvoye}" emptyMessage="Pas de messages envoyés">  
+                                <f:facet name="header">  
+                                    Boite d'envoi
+                                </f:facet>  
+
+                                <p:column sortBy="destinataire" headerText="Destinataire" width="75">  
+                                    <h:outputText value="#{mes.destinataire.login}" />  
+                                </p:column>  
+
+                                <p:column sortBy="titre" headerText="Titre" width="400">  
+                                    <h:commandLink action="#{usersCtrl.goLireMessage(mes)}" value="#{mes.titre}"/> 
+                                </p:column>  
+
+                                <p:column sortBy="dateenvoi" headerText="Date">  
+                                    <h:outputText value="#{mes.dateenvoi}" >
+                                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+                                    </h:outputText>  
+                                </p:column>   
+                            </p:dataTable>  
+                        </h:form>  
+
+                </div>  
+            </div>
+
+            <div class="right"> 
+                <h:form>  
+
+                    <h:panelGrid columns="2" rendered="#{usersCtrl.userConnecte.login != null}">
+                        <h:outputText value="#{usersCtrl.userConnecte.login}"/> <br/> <br/>
+                        <h:commandButton action="#{usersCtrl.seDeconnecter()}" value="Se déconnecter"/>
+                    </h:panelGrid>
+
+
+                    <h:panelGrid columns="2" rendered="#{usersCtrl.userConnecte.login == null}">  
+                        <h:outputLabel value="Login:"/>  
+                        <h:inputText id="login" value="#{usersCtrl.login}" />
+                        <h:outputLabel value="Mot de passe:"/>  
+                        <h:inputSecret id="mdp" value="#{usersCtrl.mdp}" />  
+
+                        <h:commandButton action="#{usersCtrl.identifier()}" value="S'identifier"/>
+                        <h:commandButton action="#{usersCtrl.goInscription()}" value="S'inscrire"/>
+
+                        <h:outputText value="#{usersCtrl.erreur}"/>
+                    </h:panelGrid>  
+                </h:form>  
+            </div>
+        </div>
+
+
+    </h:body>
+</html>
+

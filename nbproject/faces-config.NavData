@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only">
+        <Node id="index.xhtml" x="55" y="14" zoom="true"/>
+        <Node id="inscription.xhtml" x="37" y="466" zoom="true"/>
+        <Node id="EcrireMessage.xhtml" x="709" y="466" zoom="true"/>
+        <Node id="LireMessage.xhtml" x="1161" y="459" zoom="true"/>
+        <Node id="InscriptionFinOK.xhtml" x="238" y="251" zoom="true"/>
+        <Node id="boite.xhtml" x="956" y="43" zoom="true"/>
+    </Scope>
+    <Scope Scope="Project">
+        <Node id="index.xhtml" x="157" y="-6" zoom="true"/>
+        <Node id="inscription.xhtml" x="158" y="494" zoom="true"/>
+        <Node id="LireMessage.xhtml" x="1161" y="459" zoom="true"/>
+        <Node id="EcrireMessage.xhtml" x="709" y="466" zoom="true"/>
+        <Node id="InscriptionFinOK.xhtml" x="238" y="251" zoom="true"/>
+        <Node id="boite.xhtml" x="1009" y="-9" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations">
+        <Node id="index.xhtml" x="157" y="-6" zoom="true"/>
+        <Node id="inscription.xhtml" x="158" y="494" zoom="true"/>
+        <Node id="LireMessage.xhtml" x="1161" y="459" zoom="true"/>
+        <Node id="EcrireMessage.xhtml" x="709" y="466" zoom="true"/>
+        <Node id="InscriptionFinOK.xhtml" x="238" y="251" zoom="true"/>
+        <Node id="boite.xhtml" x="1009" y="-9" zoom="true"/>
+    </Scope>
+</Scene>
